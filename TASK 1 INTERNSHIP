@@ -1,0 +1,30 @@
+def getDataPoint(stock):
+    """Calculate and return the data point for a given stock."""
+    stock_name, bid_price, ask_price = stock['name'], float(stock['bid_price']), float(stock['ask_price'])
+    price = (bid_price + ask_price) / 2
+    return stock_name, bid_price, ask_price, price
+
+def getRatio(price_a, price_b):
+    """Calculate and return the ratio of price_a to price_b."""
+    if price_b == 0:
+        return None  # Avoid division by zero
+    return price_a / price_b
+
+def main(data):
+    """Process the stock data and print the results."""
+    for stock in data:
+        name, bid_price, ask_price, price = getDataPoint(stock)
+        print(f"Stock: {name}, Bid: {bid_price}, Ask: {ask_price}, Price: {price}")
+
+    stock_a = getDataPoint(data[0])
+    stock_b = getDataPoint(data[1])
+    ratio = getRatio(stock_a[3], stock_b[3])
+    print(f"Ratio: {ratio}")
+
+# Example data
+data = [
+    {'name': 'Stock A', 'bid_price': 100, 'ask_price': 102},
+    {'name': 'Stock B', 'bid_price': 200, 'ask_price': 202},
+]
+
+main(data)
